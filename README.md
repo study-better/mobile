@@ -1,4 +1,4 @@
-# studier (for lack of a better name) [![Build Status](https://travis-ci.org/study-more/mobile.svg?branch=master)](https://travis-ci.org/study-more/mobile)
+# studier (for lack of a better name) [![Build Status](https://travis-ci.org/study-better/mobile.svg?branch=master)](https://travis-ci.org/study-better/mobile)
 
 The mobile codebase.
 
