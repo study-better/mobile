@@ -1,19 +1,18 @@
+import React from 'react'
 import { AppRegistry } from 'react-native'
 import Navigator from './src'
 import { name } from './app.json'
-import React from 'react'
 import { Provider } from 'mobx-react'
+import AuthStore from './src/stores/auth'
 
-const stores = {}
-
-class App extends React.Component {
-  render() {
-    return (
-      <Provider stores>
-        <Navigator />
-      </Provider>
-    )
-  }
+const stores = {
+  auth: new AuthStore(),
 }
+
+const App = () => (
+  <Provider {...stores}>
+    <Navigator />
+  </Provider>
+)
 
 AppRegistry.registerComponent(name, () => App)
