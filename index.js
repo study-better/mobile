@@ -1,15 +1,19 @@
 import { AppRegistry } from 'react-native'
-import App from './App'
-import { name as appName } from './app.json'
+import Navigator from './src'
+import { name } from './app.json'
 import React from 'react'
 import { Provider } from 'mobx-react'
 
 const stores = {}
 
-const _App = () => (
-  <Provider stores>
-    <App />
-  </Provider>
-)
+class App extends React.Component {
+  render() {
+    return (
+      <Provider stores>
+        <Navigator />
+      </Provider>
+    )
+  }
+}
 
-AppRegistry.registerComponent(appName, () => _App)
+AppRegistry.registerComponent(name, () => App)
