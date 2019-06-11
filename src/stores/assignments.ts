@@ -12,9 +12,14 @@ export interface Assignment {
 
 export default class AssignmentStore {
   _byId: { [key: string]: Assignment } = {}
+  _byClassId: { [key: string]: Assignment[] } = {}
 
   byId(_id: string) {
     return this._byId[_id] || {}
+  }
+
+  byClassId(classId: string) {
+    return this._byClassId[classId] || []
   }
 
   async loadByClassId(classId: string) {
@@ -28,6 +33,7 @@ export default class AssignmentStore {
       data.forEach((assignment: Assignment) => {
         this._byId[assignment._id] = assignment
       })
+      this._byClassId[classId] = data
     } catch (err) {
       console.log('Error loading assignments by class id', classId)
       throw err
@@ -37,4 +43,5 @@ export default class AssignmentStore {
 
 decorate(AssignmentStore, {
   _byId: observable,
+  _byClassId: observable,
 })
