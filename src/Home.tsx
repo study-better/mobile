@@ -12,6 +12,7 @@ class Home extends React.Component<{
   auth: AuthStore
   classes: ClassStore
   assignments: AssignmentStore
+  navigation: any
 }> {
   static navigationOptions = ({ navigation }: NavigationScreenProps) => ({
     title: 'Classes',
@@ -27,7 +28,17 @@ class Home extends React.Component<{
         <FlatList
           data={this.props.classes.feed}
           keyExtractor={(item) => item._id}
-          renderItem={({ item }) => <ClassCell class={item} />}
+          renderItem={({ item }) => (
+            <ClassCell
+              class={item}
+              onPress={() => {
+                this.props.navigation.navigate('ClassScreen', {
+                  classId: item._id,
+                  className: item.name,
+                })
+              }}
+            />
+          )}
         />
         <View
           style={{
