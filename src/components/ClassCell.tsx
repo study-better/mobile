@@ -21,7 +21,7 @@ export default class ClassCell extends React.Component<{
         }}
       >
         <View style={{ justifyContent: 'space-between' }}>
-          <Text>{this.props.class.name}</Text>
+          <Text style={{ fontWeight: 'bold' }}>{this.props.class.name}</Text>
           <View style={{ height: 4 }} />
           <Text>Assignment in 4 days</Text>
         </View>
