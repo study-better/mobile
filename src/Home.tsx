@@ -7,6 +7,9 @@ import AssignmentStore from './stores/assignments'
 import { NavigationScreenProps } from 'react-navigation'
 import Colors from './Colors'
 import ClassCell from './components/ClassCell'
+import Quote from 'inspirational-quotes'
+
+const quote = Quote.getQuote()
 
 class Home extends React.Component<{
   auth: AuthStore
@@ -43,12 +46,13 @@ class Home extends React.Component<{
         <View
           style={{
             padding: 4,
-            backgroundColor: 'rgba(255, 255, 255, 0.45)',
+            backgroundColor: Colors.white,
             alignItems: 'center',
             justifyContent: 'center',
           }}
         >
-          <Text>A motivational message</Text>
+          <Text>{quote.text}</Text>
+          <Text>- {quote.author}</Text>
         </View>
       </View>
     )
