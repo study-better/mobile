@@ -14,6 +14,19 @@ class ClassScreen extends React.Component<{
 }> {
   static navigationOptions = ({ navigation }: NavigationScreenProps) => ({
     title: navigation.getParam('className', 'Class'),
+    headerRight: (
+      <TouchableOpacity
+        style={{
+          backgroundColor: Colors.black,
+          margin: 8,
+          padding: 8,
+          borderRadius: 3,
+        }}
+        onPress={() => alert('Add assignment')}
+      >
+        <Text style={{ color: Colors.white }}>Add Assignment</Text>
+      </TouchableOpacity>
+    ),
   })
 
   async componentDidMount() {
