@@ -1,5 +1,6 @@
-import { observable, computed } from 'mobx'
+import { decorate, observable } from 'mobx'
 import { Class } from './classes'
+import axios from 'axios'
 
 export interface Assignment {
   _id: string
@@ -11,7 +12,29 @@ export interface Assignment {
 
 export default class AssignmentStore {
   _byId: { [key: string]: Assignment } = {}
+
   byId(_id: string) {
     return this._byId[_id] || {}
   }
+
+  async loadByClassId(classId: string) {
+    try {
+      const { data } = await axios.get(
+        'https://backend.study-better.now.sh/assignments',
+        {
+          params: { classId },
+        }
+      )
+      data.forEach((assignment: Assignment) => {
+        this._byId[assignment._id] = assignment
+      })
+    } catch (err) {
+      console.log('Error loading assignments by class id', classId)
+      throw err
+    }
+  }
 }
+
+decorate(AssignmentStore, {
+  _byId: observable,
+})
