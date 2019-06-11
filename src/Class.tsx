@@ -44,32 +44,6 @@ class ClassScreen extends React.Component<{
           keyExtractor={(item) => item._id}
           renderItem={({ item }) => <AssignmentCell assignment={item} />}
         />
-        <View
-          style={{
-            flexDirection: 'row',
-          }}
-        >
-          <TouchableOpacity
-            style={{
-              flex: 1,
-              backgroundColor: 'rgba(255, 255, 255, 0.45)',
-              alignItems: 'center',
-              padding: 8,
-            }}
-          >
-            <Text>Add Class</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              flex: 1,
-              backgroundColor: 'rgba(255, 255, 255, 0.45)',
-              alignItems: 'center',
-              padding: 8,
-            }}
-          >
-            <Text>Add Due Date</Text>
-          </TouchableOpacity>
-        </View>
       </View>
     )
   }
