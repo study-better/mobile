@@ -2,17 +2,27 @@ import { decorate, observable } from 'mobx'
 import { Class } from './classes'
 import axios from 'axios'
 
-export interface Assignment {
+export interface KeyDate {
   _id: string
   name: string
   classId: string
   class: Class
   dueDate: string
+  status?: string
 }
 
-export default class AssignmentStore {
-  _byId: { [key: string]: Assignment } = {}
-  _byClassId: { [key: string]: Assignment[] } = {}
+export interface Assignment extends KeyDate {}
+export interface Paper extends Assignment {}
+export interface Appointment extends KeyDate {
+  time?: string
+  location?: string
+}
+export interface Project extends KeyDate {}
+export interface Test extends KeyDate {}
+
+export default class KeyDateStore {
+  _byId: { [key: string]: KeyDate } = {}
+  _byClassId: { [key: string]: KeyDate[] } = {}
 
   byId(_id: string) {
     return this._byId[_id] || {}
@@ -30,18 +40,18 @@ export default class AssignmentStore {
           params: { classId },
         }
       )
-      data.forEach((assignment: Assignment) => {
-        this._byId[assignment._id] = assignment
+      data.forEach((keydate: KeyDate) => {
+        this._byId[keydate._id] = keydate
       })
       this._byClassId[classId] = data
     } catch (err) {
-      console.log('Error loading assignments by class id', classId)
+      console.log('Error loading key dates by class id', classId)
       throw err
     }
   }
 }
 
-decorate(AssignmentStore, {
+decorate(KeyDateStore, {
   _byId: observable,
   _byClassId: observable,
 })

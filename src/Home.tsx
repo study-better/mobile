@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react'
 import { View, Text, FlatList, TouchableOpacity } from 'react-native'
 import AuthStore from './stores/auth'
 import ClassStore, { Class } from './stores/classes'
-import AssignmentStore from './stores/assignments'
+import KeyDateStore from './stores/keydates'
 import { NavigationScreenProps } from 'react-navigation'
 import Colors from './Colors'
 import ClassCell from './components/ClassCell'
@@ -14,7 +14,7 @@ const quote = Quote.getQuote()
 class Home extends React.Component<{
   auth: AuthStore
   classes: ClassStore
-  assignments: AssignmentStore
+  keyDates: KeyDateStore
   navigation: any
 }> {
   static navigationOptions = ({ navigation }: NavigationScreenProps) => ({
@@ -72,4 +72,4 @@ class Home extends React.Component<{
   }
 }
 
-export default inject('auth', 'assignments', 'classes')(observer(Home))
+export default inject('auth', 'keyDates', 'classes')(observer(Home))

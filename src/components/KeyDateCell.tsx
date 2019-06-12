@@ -1,17 +1,17 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import Colors from '../Colors'
-import { Assignment } from '../stores/assignments'
+import { KeyDate } from '../stores/keydates'
 import moment from 'moment'
 
-export default class AssignmentCell extends React.Component<{
-  assignment: Assignment
+export default class KeyDateCell extends React.Component<{
+  keyDate: KeyDate
 }> {
   render() {
-    const dueDiff = moment(this.props.assignment.dueDate).diff(moment(), 'days')
+    const dueDiff = moment(this.props.keyDate.dueDate).diff(moment(), 'days')
     return (
       <TouchableOpacity
-        key={this.props.assignment._id}
+        key={this.props.keyDate._id}
         style={{
           borderRadius: 4,
           backgroundColor: Colors.white,
@@ -24,7 +24,7 @@ export default class AssignmentCell extends React.Component<{
       >
         <View style={{ justifyContent: 'space-between' }}>
           <Text style={{ fontWeight: 'bold' }}>
-            {this.props.assignment.name}
+            {this.props.keyDate.name}
           </Text>
           <Text>
             {dueDiff > 0
