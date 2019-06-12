@@ -27,11 +27,11 @@ class SignUpScreen extends React.Component<{
     }, 200)
   }
 
-  onLeftButtonPress = async () => {
+  onLoginPress = async () => {
     this.props.navigation.goBack()
   }
 
-  onRightButtonPress = async () => {
+  onSignupPress = async () => {
     try {
       if (this.state.password !== this.state.passwordConfirm) {
         alert('Passwords do not match')
@@ -82,19 +82,19 @@ class SignUpScreen extends React.Component<{
           value={this.state.passwordConfirm}
           onSubmitEditing={async () => {
             Keyboard.dismiss()
-            await this.onRightButtonPress()
+            await this.onSignupPress()
           }}
         />
         <View style={{ flexDirection: 'row' }}>
           <StyledTouchableOpacity
             style={{ flex: 1, marginRight: 8 }}
-            onPress={this.onLeftButtonPress}
+            onPress={this.onLoginPress}
           >
             <Text style={{ color: Colors.white }}>Login</Text>
           </StyledTouchableOpacity>
           <StyledTouchableOpacity
             style={{ flex: 1, backgroundColor: Colors.blue }}
-            onPress={this.onRightButtonPress}
+            onPress={this.onSignupPress}
           >
             <Text style={{ color: Colors.white }}>Sign Up</Text>
           </StyledTouchableOpacity>
