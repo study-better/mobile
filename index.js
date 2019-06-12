@@ -6,6 +6,11 @@ import { Provider } from 'mobx-react'
 import AuthStore from './src/stores/auth'
 import ClassStore from './src/stores/classes'
 import KeyDateStore from './src/stores/keydates'
+import axios from 'axios'
+
+axios.defaults.baseURL = 'https://backend.study-better.now.sh'
+// axios.defaults.baseURL = 'http://localhost:4000'
+axios.defaults.headers['content-type'] = 'application/json'
 
 const stores = {
   auth: new AuthStore(),
