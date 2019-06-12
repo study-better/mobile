@@ -12,8 +12,12 @@ export default class AuthStore {
   auth: User = {} as User
 
   async loadStoredAuth() {
-    const auth: any = await AsyncStorage.getItem('auth')
-    if (auth && auth.token) {
+    const authString = await AsyncStorage.getItem('auth')
+    if (!authString) {
+      return
+    }
+    const auth = JSON.parse(authString) as User
+    if (auth.token) {
       this.auth = auth
     }
   }
@@ -33,7 +37,7 @@ export default class AuthStore {
         username,
         password,
       })
-      await AsyncStorage.setItem('auth', data)
+      await AsyncStorage.setItem('auth', JSON.stringify(data))
       this.auth = data
     } catch (err) {
       console.log('Error creating user', err)
@@ -47,7 +51,7 @@ export default class AuthStore {
         username,
         password,
       })
-      await AsyncStorage.setItem('auth', data)
+      await AsyncStorage.setItem('auth', JSON.stringify(data))
       this.auth = data
     } catch (err) {
       console.log('Error logging in', err)

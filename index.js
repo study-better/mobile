@@ -8,8 +8,8 @@ import ClassStore from './src/stores/classes'
 import KeyDateStore from './src/stores/keydates'
 import axios from 'axios'
 
-axios.defaults.baseUrl = 'https://backend.study-better.now.sh'
-axios.default.baseUrl = 'http://localhost:4000'
+axios.defaults.baseURL = 'https://backend.study-better.now.sh'
+axios.defaults.baseURL = 'http://localhost:4000'
 axios.defaults.headers['content-type'] = 'application/json'
 
 const stores = {

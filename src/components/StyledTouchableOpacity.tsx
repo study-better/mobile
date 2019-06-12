@@ -3,7 +3,7 @@ import { TouchableOpacity } from 'react-native'
 import Colors from '../Colors'
 
 export default (
-  props: React.ComponentProps<typeof TouchableOpacity> & { children: any }
+  props: React.ComponentProps<typeof TouchableOpacity> & { children?: any }
 ) => (
   <TouchableOpacity
     // Spread the props with `style` merged
