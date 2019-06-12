@@ -15,6 +15,7 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.4.2",
     "axios": "^0.19.0",
+    "idx": "^2.5.6",
     "inspirational-quotes": "^1.0.8",
     "mobx": "^5.10.0",
     "mobx-react": "^6.0.3",
