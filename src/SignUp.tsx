@@ -21,6 +21,12 @@ class SignUpScreen extends React.Component<{
   passwordRef = React.createRef<typeof TextInput>()
   passwordConfirmRef = React.createRef<typeof TextInput>()
 
+  componentDidMount() {
+    setTimeout(() => {
+      if (this.usernameRef.current) this.usernameRef.current.focus()
+    }, 500)
+  }
+
   onLeftButtonPress = async () => {
     this.props.navigation.navigate('LoginScreen')
   }
