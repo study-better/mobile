@@ -1,10 +1,11 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
 import AuthStore from './stores/auth'
-import { View, Text } from 'react-native'
+import { View, Text, TextInput, Keyboard } from 'react-native'
 import Colors from './Colors'
 import StyledTextInput from './components/StyledTextInput'
 import StyledTouchableOpacity from './components/StyledTouchableOpacity'
+import idx from 'idx'
 
 class LoginScreen extends React.Component<{
   auth: AuthStore
@@ -13,6 +14,13 @@ class LoginScreen extends React.Component<{
   state = {
     username: '',
     password: '',
+  }
+
+  usernameRef = React.createRef<typeof TextInput>()
+  passwordRef = React.createRef<typeof TextInput>()
+
+  componentDidMount() {
+    if (this.usernameRef.current) this.usernameRef.current.focus()
   }
 
   onLoginPress = async () => {
@@ -34,14 +42,26 @@ class LoginScreen extends React.Component<{
       <View style={{ backgroundColor: Colors.white, flex: 1, padding: 8 }}>
         <Text>Username</Text>
         <StyledTextInput
+          ref={this.usernameRef}
+          autoCapitalize="none"
           onChangeText={(username: any) => this.setState({ username })}
           value={this.state.username}
+          onSubmitEditing={() =>
+            idx(this, (_) => _.passwordRef.current.focus())
+          }
+          returnKeyType="next"
         />
         <Text>Password</Text>
         <StyledTextInput
+          ref={this.passwordRef}
+          autoCapitalize="none"
           onChangeText={(password: any) => this.setState({ password })}
           secureTextEntry
           value={this.state.password}
+          onSubmitEditing={async () => {
+            Keyboard.dismiss()
+            await this.onLoginPress()
+          }}
         />
         <View style={{ flexDirection: 'row' }}>
           <StyledTouchableOpacity

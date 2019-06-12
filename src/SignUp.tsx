@@ -1,10 +1,11 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
-import { View, Text } from 'react-native'
+import { View, Text, TextInput, Keyboard } from 'react-native'
 import AuthStore from './stores/auth'
 import StyledTextInput from './components/StyledTextInput'
 import StyledTouchableOpacity from './components/StyledTouchableOpacity'
 import Colors from './Colors'
+import idx from 'idx'
 
 class SignUpScreen extends React.Component<{
   auth: AuthStore
@@ -15,6 +16,10 @@ class SignUpScreen extends React.Component<{
     password: '',
     passwordConfirm: '',
   }
+
+  usernameRef = React.createRef<typeof TextInput>()
+  passwordRef = React.createRef<typeof TextInput>()
+  passwordConfirmRef = React.createRef<typeof TextInput>()
 
   onLeftButtonPress = async () => {
     this.props.navigation.navigate('LoginScreen')
@@ -39,22 +44,40 @@ class SignUpScreen extends React.Component<{
       <View style={{ backgroundColor: Colors.white, flex: 1, padding: 8 }}>
         <Text>Username</Text>
         <StyledTextInput
+          ref={this.usernameRef}
+          autoCapitalize="none"
           onChangeText={(username: string) => this.setState({ username })}
           value={this.state.username}
+          onSubmitEditing={() =>
+            idx(this, (_) => _.passwordRef.current.focus())
+          }
+          returnKeyType="next"
         />
         <Text>Password</Text>
         <StyledTextInput
+          ref={this.passwordRef}
+          autoCapitalize="none"
           onChangeText={(password: string) => this.setState({ password })}
           secureTextEntry
           value={this.state.password}
+          onSubmitEditing={() =>
+            idx(this, (_) => _.passwordConfirmRef.current.focus())
+          }
+          returnKeyType="next"
         />
         <Text>Confirm</Text>
         <StyledTextInput
+          ref={this.passwordConfirmRef}
+          autoCapitalize="none"
           onChangeText={(passwordConfirm: string) =>
             this.setState({ passwordConfirm })
           }
           secureTextEntry
           value={this.state.passwordConfirm}
+          onSubmitEditing={async () => {
+            Keyboard.dismiss()
+            await this.onRightButtonPress()
+          }}
         />
         <View style={{ flexDirection: 'row' }}>
           <StyledTouchableOpacity
