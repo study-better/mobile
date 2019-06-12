@@ -1,10 +1,32 @@
-import { observable, computed } from 'mobx'
+import { decorate, observable } from 'mobx'
+import AsyncStorage from '@react-native-community/async-storage'
 
-// A stub authentication store
+interface User {
+  _id: string
+  username: string
+  token?: string
+}
+
 export default class AuthStore {
-  _authenticated: boolean = false
+  auth: User = {} as User
+
+  async loadStoredAuth() {
+    const auth: any = await AsyncStorage.getItem('auth')
+    if (auth && auth.token) {
+      this.auth = auth
+    }
+  }
+
+  get token() {
+    if (!this.authenticated) throw new Error('Unable to access token')
+    return this.auth.token
+  }
 
   get authenticated() {
-    return this._authenticated
+    return !!(this.auth && this.auth.token)
   }
 }
+
+decorate(AuthStore, {
+  auth: observable,
+})

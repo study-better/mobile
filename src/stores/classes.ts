@@ -18,9 +18,7 @@ export default class ClassStore {
 
   async load() {
     try {
-      const { data } = await axios.get(
-        'https://backend.study-better.now.sh/classes'
-      )
+      const { data } = await axios.get('/classes')
       data.forEach((_class: Class) => {
         this._byId[_class._id] = _class
       })
