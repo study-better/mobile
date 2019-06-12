@@ -2,14 +2,15 @@ import React from 'react'
 import { TextInput } from 'react-native'
 import Colors from '../Colors'
 
-export default (
-  props: React.ComponentProps<typeof TextInput> & { children?: any }
-) => (
-  <TextInput
-    // Spread the props with `style` merged
-    {...{
-      ...props,
-      style: Object.assign(
+export default React.forwardRef(
+  (
+    props: React.ComponentProps<typeof TextInput> & { children?: any },
+    ref: any
+  ) => (
+    <TextInput
+      ref={ref}
+      {...props}
+      style={Object.assign(
         {
           height: 50,
           borderRadius: 3,
@@ -18,9 +19,9 @@ export default (
           padding: 8,
         },
         (props && props.style) || {}
-      ),
-    }}
-  >
-    {props.children}
-  </TextInput>
+      )}
+    >
+      {props.children}
+    </TextInput>
+  )
 )
