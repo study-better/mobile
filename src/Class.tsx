@@ -14,6 +14,19 @@ class ClassScreen extends React.Component<{
 }> {
   static navigationOptions = ({ navigation }: NavigationScreenProps) => ({
     title: navigation.getParam('className', 'Class'),
+    headerRight: (
+      <TouchableOpacity
+        style={{
+          backgroundColor: Colors.black,
+          margin: 8,
+          padding: 8,
+          borderRadius: 3,
+        }}
+        onPress={() => alert('Add assignment')}
+      >
+        <Text style={{ color: Colors.white }}>Add Assignment</Text>
+      </TouchableOpacity>
+    ),
   })
 
   async componentDidMount() {
@@ -31,32 +44,6 @@ class ClassScreen extends React.Component<{
           keyExtractor={(item) => item._id}
           renderItem={({ item }) => <KeyDateCell keyDate={item} />}
         />
-        <View
-          style={{
-            flexDirection: 'row',
-          }}
-        >
-          <TouchableOpacity
-            style={{
-              flex: 1,
-              backgroundColor: 'rgba(255, 255, 255, 0.45)',
-              alignItems: 'center',
-              padding: 8,
-            }}
-          >
-            <Text>Add Class</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              flex: 1,
-              backgroundColor: 'rgba(255, 255, 255, 0.45)',
-              alignItems: 'center',
-              padding: 8,
-            }}
-          >
-            <Text>Add Due Date</Text>
-          </TouchableOpacity>
-        </View>
       </View>
     )
   }

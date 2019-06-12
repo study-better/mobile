@@ -8,6 +8,7 @@ import LoginScreen from './Login'
 import SignUpScreen from './SignUp'
 import HomeScreen from './Home'
 import ClassScreen from './Class'
+import Colors from './Colors'
 
 const AppStack = createStackNavigator(
   {
@@ -16,6 +17,15 @@ const AppStack = createStackNavigator(
   },
   {
     initialRouteName: 'HomeScreen',
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: Colors.white,
+      },
+      headerTitleStyle: {
+        color: Colors.black,
+      },
+      headerTintColor: Colors.black,
+    },
   }
 )
 

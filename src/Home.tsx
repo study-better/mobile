@@ -1,6 +1,6 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
-import { View, Text, FlatList } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity } from 'react-native'
 import AuthStore from './stores/auth'
 import ClassStore, { Class } from './stores/classes'
 import KeyDateStore from './stores/keydates'
@@ -19,6 +19,19 @@ class Home extends React.Component<{
 }> {
   static navigationOptions = ({ navigation }: NavigationScreenProps) => ({
     title: 'Classes',
+    headerRight: (
+      <TouchableOpacity
+        style={{
+          backgroundColor: Colors.black,
+          margin: 8,
+          padding: 8,
+          borderRadius: 3,
+        }}
+        onPress={() => alert('Add class')}
+      >
+        <Text style={{ color: Colors.white }}>Add class</Text>
+      </TouchableOpacity>
+    ),
   })
 
   async componentDidMount() {
