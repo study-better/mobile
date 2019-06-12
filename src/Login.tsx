@@ -20,7 +20,9 @@ class LoginScreen extends React.Component<{
   passwordRef = React.createRef<typeof TextInput>()
 
   componentDidMount() {
-    if (this.usernameRef.current) this.usernameRef.current.focus()
+    setTimeout(() => {
+      if (this.usernameRef.current) this.usernameRef.current.focus()
+    }, 200)
   }
 
   onLoginPress = async () => {

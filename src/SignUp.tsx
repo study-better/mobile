@@ -24,11 +24,11 @@ class SignUpScreen extends React.Component<{
   componentDidMount() {
     setTimeout(() => {
       if (this.usernameRef.current) this.usernameRef.current.focus()
-    }, 500)
+    }, 200)
   }
 
   onLeftButtonPress = async () => {
-    this.props.navigation.navigate('LoginScreen')
+    this.props.navigation.goBack()
   }
 
   onRightButtonPress = async () => {
