@@ -4,11 +4,12 @@ import {
   createSwitchNavigator,
 } from 'react-navigation'
 import AuthLoading from './AuthLoading'
-import Login from './Login'
+import LoginScreen from './Login'
+import SignUpScreen from './SignUp'
 import HomeScreen from './Home'
 import ClassScreen from './Class'
 
-const stack = createStackNavigator(
+const AppStack = createStackNavigator(
   {
     HomeScreen,
     ClassScreen,
@@ -18,10 +19,21 @@ const stack = createStackNavigator(
   }
 )
 
+const AuthStack = createStackNavigator(
+  {
+    LoginScreen,
+    SignUpScreen,
+  },
+  {
+    initialRouteName: 'LoginScreen',
+    headerMode: 'none',
+  }
+)
+
 const _switch = createSwitchNavigator(
   {
-    App: stack,
-    Auth: Login,
+    App: AppStack,
+    Auth: AuthStack,
     AuthLoading,
   },
   {
