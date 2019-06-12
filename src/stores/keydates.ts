@@ -11,14 +11,14 @@ export interface KeyDate {
   status?: string
 }
 
-export interface Assignment extemds KeyDate {}
-export interface Paper extemds Assignment {}
-export interface Appointment extemds KeyDate {
+export interface Assignment extends KeyDate {}
+export interface Paper extends Assignment {}
+export interface Appointment extends KeyDate {
   time?: string
   location?: string
 }
-export interface Project extemds KeyDate {}
-export interface Test extemds KeyDate {}
+export interface Project extends KeyDate {}
+export interface Test extends KeyDate {}
 
 export default class KeyDateStore {
   _byId: { [key: string]: KeyDate } = {}
