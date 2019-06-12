@@ -59,4 +59,4 @@ class Home extends React.Component<{
   }
 }
 
-export default inject('auth', 'keydates', 'classes')(observer(Home))
+export default inject('auth', 'keyDates', 'classes')(observer(Home))

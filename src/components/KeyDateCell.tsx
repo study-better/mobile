@@ -11,7 +11,7 @@ export default class KeyDateCell extends React.Component<{
     const dueDiff = moment(this.props.keyDate.dueDate).diff(moment(), 'days')
     return (
       <TouchableOpacity
-        key={this.props.assignment._id}
+        key={this.props.keyDate._id}
         style={{
           borderRadius: 4,
           backgroundColor: Colors.white,
@@ -24,7 +24,7 @@ export default class KeyDateCell extends React.Component<{
       >
         <View style={{ justifyContent: 'space-between' }}>
           <Text style={{ fontWeight: 'bold' }}>
-            {this.props.assignment.name}
+            {this.props.keyDate.name}
           </Text>
           <Text>
             {dueDiff > 0

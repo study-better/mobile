@@ -25,7 +25,7 @@ export default class KeyDateStore {
   async loadByClassId(classId: string) {
     try {
       const { data } = await axios.get(
-        'https://backend.study-better.now.sh/keydates',
+        'https://backend.study-better.now.sh/assignments',
         {
           params: { classId },
         }

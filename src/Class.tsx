@@ -62,4 +62,4 @@ class ClassScreen extends React.Component<{
   }
 }
 
-export default inject('classes', 'keydates')(observer(ClassScreen))
+export default inject('classes', 'keyDates')(observer(ClassScreen))

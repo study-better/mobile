@@ -10,7 +10,7 @@ import KeyDateStore from './src/stores/keydates'
 const stores = {
   auth: new AuthStore(),
   classes: new ClassStore(),
-  keydates: new KeyDateStore(),
+  keyDates: new KeyDateStore(),
 }
 
 const App = () => (
