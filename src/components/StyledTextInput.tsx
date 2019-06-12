@@ -2,7 +2,9 @@ import React from 'react'
 import { TextInput } from 'react-native'
 import Colors from '../Colors'
 
-export default (props: any) => (
+export default (
+  props: React.ComponentProps<typeof TextInput> & { children: any }
+) => (
   <TextInput
     // Spread the props with `style` merged
     {...{
