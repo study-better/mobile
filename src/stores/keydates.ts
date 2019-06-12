@@ -8,7 +8,17 @@ export interface KeyDate {
   classId: string
   class: Class
   dueDate: string
+  status?: string
 }
+
+export interface Assignment extemds KeyDate {}
+export interface Paper extemds Assignment {}
+export interface Appointment extemds KeyDate {
+  time?: string
+  location?: string
+}
+export interface Project extemds KeyDate {}
+export interface Test extemds KeyDate {}
 
 export default class KeyDateStore {
   _byId: { [key: string]: KeyDate } = {}
